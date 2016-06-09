@@ -9,6 +9,27 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [] = main( opts )
     % Check for proper opts content
+    quitting = 0;
+
+    if isfield( opts, 'arch' ) == 0
+        disp( 'No architecture specified' )
+        quitting = 1;
+    elseif isfield( opts, 'test' ) == 0
+        disp( 'No testing file specified' )
+        quitting = 1;
+    elseif isfield( opts, 'train' ) == 0
+        disp( 'No training file specified' )
+        quitting = 1;
+    elseif isfield( opts, 'val' ) == 0
+        disp( 'No validation file specified' )
+        quitting = 1;
+    end
+
+    if quitting
+        quit
+    end
+
+    disp( 'hello world' )
 
     % Load data from specified files
 

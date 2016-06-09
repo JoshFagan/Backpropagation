@@ -14,17 +14,21 @@
 %   Path to and name of file containing validation data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Clear all previous values
+clear
+
+
 % Neural network architecture
 opts.arch = [ 2, 3, 1];
 
 % Testing data file 
-opts.test = '../Data/xor_test.txt'
+opts.test = '../Data/xor_test.txt';
 
 % Training data file 
-opts.train = '../Data/xor_train.txt'
+opts.train = '../Data/xor_train.txt';
 
 % Validation data file 
-opts.val = '../Data/xor_val.txt'
+opts.val = '../Data/xor_val.txt';
 
 
 % Launch the main file using specified hyperparameter values
