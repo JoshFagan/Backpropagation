@@ -8,6 +8,9 @@
 % Parameter: opts - Structure storing user specified hyperparameter values
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [] = main( opts )
+    num_layer = 0;  % Number of layers in the neural network
+
+
     %%%%% Check for proper opts content
     returning = 0;
 
@@ -28,6 +31,7 @@ function [] = main( opts )
     if returning
        return 
     end
+
 
     %%%%% Load data from specified files
     Test  = load( opts.test );
@@ -56,6 +60,18 @@ function [] = main( opts )
 
 
     %%%%% Create weight and layer matrices
+    num_layer = length( opts.arch );
+    W = cell( 1, num_layer-1 );
+    L = cell( 1, num_layer );
+
+    for i = 1:num_layer-1
+        W{i} = ( rand( opts.arch(i)+1, opts.arch(i+1) ) * 2 - 1 );
+        L{i} = ones( opts.arch(i)+1, 1 );
+
+        W{i} = W{i} ./ ( opts.arch(i) ^ (1/2) );
+    end
+    L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
+
 
     %%%%% Launch backpropagation neural network algorithm
 end
