@@ -73,6 +73,6 @@ function [] = main( opts )
     L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
 
 
-    %%%%% Launch backpropagation neural network algorithm
-    backpropagation_nn( opts, L, W );
+    %%%%% Train neural network with backpropagation algorithm
+    W = create_model( opts, L, Test, Train, Val, W );
 end
