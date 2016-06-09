@@ -74,4 +74,5 @@ function [] = main( opts )
 
 
     %%%%% Launch backpropagation neural network algorithm
+    backpropagation_nn( opts, L, W );
 end
