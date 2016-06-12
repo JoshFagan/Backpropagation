@@ -17,6 +17,9 @@ function [] = main( opts )
     if isfield( opts, 'arch' ) == 0
         disp( 'No architecture specified' )
         returning = 1;
+    elseif isfield( opts, 'max_iter' ) == 0
+        disp( 'No maximum number of iterations specified' )
+        returning = 1;
     elseif isfield( opts, 'test' ) == 0
         disp( 'No testing file specified' )
         returning = 1;

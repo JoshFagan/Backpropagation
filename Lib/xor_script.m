@@ -9,6 +9,7 @@
 %       of the neural network
 %       Minimum number of specified values is two [input layer, output layer] 
 %       No maximum number of specified values
+%   Positive integer specifying maximum number of training iterations to perform
 %   Path to and name of file containing testing data
 %   Path to and name of file containing training data
 %   Path to and name of file containing validation data
@@ -20,6 +21,9 @@ clear
 
 % Neural network architecture
 opts.arch = [ 2, 3, 1];
+
+% Max number of iterations
+opts.max_iter = 10;
 
 % Testing data file 
 opts.test = '../Data/xor_test.txt';

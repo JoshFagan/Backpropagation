@@ -10,9 +10,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [W] = create_model( opts, L, Test, Train, Val, W )
     % For specified number of iterations, or until convergence
+    for iteration = 1:opts.max_iter
         % For each data point
             % Perform forward pass
             % Perform backpropagation
 
         % Discount learning rate
+    end
 end
