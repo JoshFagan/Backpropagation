@@ -16,6 +16,10 @@
 %   Path to and name of file containing validation data
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Clear all previous values
+clear
+
+
 % Neural network architecture
 opts.arch = [ num_input, num_hid_1, num_hid_2, num_hid_3, num_output];
 
