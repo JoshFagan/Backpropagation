@@ -37,17 +37,17 @@ function [] = main( opts )
 
 
     %%%%% Load data from specified files
-    Test  = load( opts.test );
-    Train = load( opts.train );
-    Val   = load( opts.val );
-    
+    Test.points  = load( opts.test );
+    Train.points = load( opts.train );
+    Val.points   = load( opts.val );
+
     % Check to ensure size of point label and feature information is the same
     % across data sets
-    if size(Test, 2) ~= size(Train, 2)
+    if size(Test.points, 2) ~= size(Train.points, 2)
         disp( 'Test data and train data do not have the same number of ' )
         disp( 'features or label information' )
         return 
-    elseif size(Test, 2) ~= size(Val, 2)
+    elseif size(Test.points, 2) ~= size(Val.points, 2)
         disp( 'Test data and validation data do not have the same number of ' )
         disp( 'features or label information' )
        return 
@@ -55,11 +55,20 @@ function [] = main( opts )
 
     % Check to ensure size of point label and feature information is the same 
     % as the sum of the specified inout and output layer size
-    if size(Test,2) ~= ( opts.arch(1) + opts.arch(end) )
+    if size(Test.points,2) ~= ( opts.arch(1) + opts.arch(end) )
         disp( 'Inappropriate architecture settings:' ) 
         disp( 'Input layer and output layer should sum to size of data rows' )
        return 
     end
+
+    % Transform point information into point and label information
+    Test.labels  = Test.points( :, opts.arch(1)+1:end );
+    Test.points  = Test.points( :, 1:opts.arch(1) );
+    Train.labels = Train.points( :, opts.arch(1)+1:end );
+    Train.points = Train.points( :, 1:opts.arch(1) );
+    Val.labels   = Val.points( :, opts.arch(1)+1:end );
+    Val.points   = Val.points( :, 1:opts.arch(1) );
+    
 
 
     %%%%% Create weight and layer matrices
