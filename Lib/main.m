@@ -14,7 +14,10 @@ function [] = main( opts )
     %%%%% Check for proper opts content
     returning = 0;
 
-    if isfield( opts, 'arch' ) == 0
+    if isfield( opts, 'alpha' ) == 0
+        disp( 'No learning rate specified' )
+        returning = 1;
+    elseif isfield( opts, 'arch' ) == 0
         disp( 'No architecture specified' )
         returning = 1;
     elseif isfield( opts, 'max_iter' ) == 0

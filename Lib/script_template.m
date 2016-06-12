@@ -6,6 +6,7 @@
 %              and launch the main file
 %
 % Required user specified values:
+%   Learning rate
 %   Array of positive integral values specifying number of nodes in each layer 
 %       of the neural network
 %       Minimum number of specified values is two [input layer, output layer] 
@@ -19,6 +20,9 @@
 % Clear all previous values
 clear
 
+
+% Learning rate
+opts.alpha = LEARNING_RATE;
 
 % Neural network architecture
 opts.arch = [ num_input, num_hid_1, num_hid_2, num_hid_3, num_output];

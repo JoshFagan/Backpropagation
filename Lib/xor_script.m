@@ -5,6 +5,7 @@
 % Description: Script used to learn the exclusive OR logic opperation 
 %
 % Required user specified values:
+%   Learning rate
 %   Array of positive integral values specifying number of nodes in each layer 
 %       of the neural network
 %       Minimum number of specified values is two [input layer, output layer] 
@@ -18,6 +19,9 @@
 % Clear all previous values
 clear
 
+
+% Learning rate
+opts.alpha = 0.1;
 
 % Neural network architecture
 opts.arch = [ 2, 3, 1];
