@@ -8,7 +8,24 @@
 % Parameter: L    - Cell array storing neural network layers values
 % Parameter: W    - Cell array storing neural network weight valeus
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [W] = create_model( opts, L, Test, Train, Val, W )
+function [W] = create_model( opts, Test, Train, Val )
+    % Create weight and layer matrices
+    num_layer = length( opts.arch );
+    W = cell( 1, num_layer-1 );
+    L = cell( 1, num_layer );
+
+    for i = 1:num_layer-1
+        % Initialize weight to random number between -1 and 1
+        W{i} = ( rand( opts.arch(i)+1, opts.arch(i+1) ) * 2 - 1 );
+        % Layer values will be set before operations so just initialize to one 
+        L{i} = ones( opts.arch(i)+1, 1 );
+
+        % Normalize weights by number of nodes they connect to
+        W{i} = W{i} ./ ( opts.arch(i) ^ (1/2) );
+    end
+    L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
+
+
     % For specified number of iterations, or until convergence
     for iteration = 1:opts.max_iter
         % For each data point

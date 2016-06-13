@@ -73,21 +73,6 @@ function [] = main( opts )
     Val.points   = Val.points( :, 1:opts.arch(1) );
     
 
-
-    %%%%% Create weight and layer matrices
-    num_layer = length( opts.arch );
-    W = cell( 1, num_layer-1 );
-    L = cell( 1, num_layer );
-
-    for i = 1:num_layer-1
-        W{i} = ( rand( opts.arch(i)+1, opts.arch(i+1) ) * 2 - 1 );
-        L{i} = ones( opts.arch(i)+1, 1 );
-
-        W{i} = W{i} ./ ( opts.arch(i) ^ (1/2) );
-    end
-    L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
-
-
     %%%%% Train neural network with backpropagation algorithm
-    W = create_model( opts, L, Test, Train, Val, W );
+    W = create_model( opts, Test, Train, Val );
 end
