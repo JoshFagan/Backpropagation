@@ -29,8 +29,10 @@ function [W] = create_model( opts, Test, Train, Val )
     % For specified number of iterations, or until convergence
     for iteration = 1:opts.max_iter
         % For each data point
+        for sample = 1:size(Train.points, 1)
             % Perform forward pass
             % Perform backpropagation
+        end
 
         % Discount learning rate
     end

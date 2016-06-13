@@ -71,7 +71,7 @@ function [] = main( opts )
     Train.points = Train.points( :, 1:opts.arch(1) );
     Val.labels   = Val.points( :, opts.arch(1)+1:end );
     Val.points   = Val.points( :, 1:opts.arch(1) );
-    
+
 
     %%%%% Train neural network with backpropagation algorithm
     W = create_model( opts, Test, Train, Val );
