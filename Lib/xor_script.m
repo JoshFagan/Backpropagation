@@ -29,7 +29,7 @@ opts.alpha = 0.1;
 opts.arch = [ 2, 3, 1];
 
 % Max number of iterations
-opts.max_iter = 10;
+opts.max_iter = 1;
 
 % Seed for random number generator
 % Set SEED to "'shuffle'" for random number generation based on current time

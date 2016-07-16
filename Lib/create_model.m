@@ -13,6 +13,7 @@ function [W] = create_model( opts, Test, Train, Val )
     num_layer = length( opts.arch );
     W = cell( 1, num_layer-1 );
     L = cell( 1, num_layer );
+    Z = cell( 1, num_layer-1 );
 
     % Seed random number generator
     rng( opts.seed );
@@ -20,22 +21,25 @@ function [W] = create_model( opts, Test, Train, Val )
     for i = 1:num_layer-1
         % Initialize weight to random number between -1 and 1
         W{i} = ( rand( opts.arch(i)+1, opts.arch(i+1) ) * 2 - 1 );
-        % Layer values will be set before operations so just initialize to one 
-        L{i} = ones( opts.arch(i)+1, 1 );
 
         % Normalize weights by number of nodes they connect to
         W{i} = W{i} ./ ( opts.arch(i) ^ (1/2) );
+
+        % Layer values will be set before operations so just initialize to one 
+        L{i} = ones( opts.arch(i)+1, 1 );
+        Z{i} = ones( opts.arch(i+1), 1 );
     end
     L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
-
-    W{1}
 
     % For specified number of iterations, or until convergence
     for iteration = 1:opts.max_iter
         % For each data point
         for sample = 1:size(Train.points, 1)
+            % Set input layer to current sample
+            L{1} = Train.points( sample, : )';
+
             % Perform forward pass
-            % Perform backpropagation
+            [L, Z] = forward_pass( L, W, Z );
         end
 
         % Discount learning rate
