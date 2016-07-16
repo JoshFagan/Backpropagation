@@ -14,6 +14,9 @@ function [W] = create_model( opts, Test, Train, Val )
     W = cell( 1, num_layer-1 );
     L = cell( 1, num_layer );
 
+    % Seed random number generator
+    rng( opts.seed );
+
     for i = 1:num_layer-1
         % Initialize weight to random number between -1 and 1
         W{i} = ( rand( opts.arch(i)+1, opts.arch(i+1) ) * 2 - 1 );
@@ -25,6 +28,7 @@ function [W] = create_model( opts, Test, Train, Val )
     end
     L{num_layer} = ones( opts.arch(num_layer), 1 ); % No bias for output layer
 
+    W{1}
 
     % For specified number of iterations, or until convergence
     for iteration = 1:opts.max_iter

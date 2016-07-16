@@ -11,6 +11,8 @@
 %       Minimum number of specified values is two [input layer, output layer] 
 %       No maximum number of specified values
 %   Positive integer specifying maximum number of training iterations to perform
+%   Integer seed for random number generator. 
+%       Supply "'shuffle'" for random number generation based on current time
 %   Path to and name of file containing testing data
 %   Path to and name of file containing training data
 %   Path to and name of file containing validation data
@@ -28,6 +30,10 @@ opts.arch = [ 2, 3, 1];
 
 % Max number of iterations
 opts.max_iter = 10;
+
+% Seed for random number generator
+% Set SEED to "'shuffle'" for random number generation based on current time
+opts.seed = 'shuffle';
 
 % Testing data file 
 opts.test = '../Data/xor_test.txt';
