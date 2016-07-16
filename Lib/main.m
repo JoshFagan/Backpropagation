@@ -8,9 +8,6 @@
 % Parameter: opts - Structure storing user specified hyperparameter values
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [] = main( opts )
-    num_layer = 0;  % Number of layers in the neural network
-
-
     %%%%% Check for proper opts content
     returning = 0;
 
