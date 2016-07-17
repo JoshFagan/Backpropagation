@@ -37,9 +37,13 @@ function [W] = create_model( opts, Test, Train, Val )
         for sample = 1:size(Train.points, 1)
             % Set input layer to current sample
             L{1} = Train.points( sample, : )';
+            T = Train.labels( sample, : )';
 
             % Perform forward pass
             [L, Z] = forward_pass( L, W, Z );
+
+            % Perform backpropagation of errors
+            backprop( opts.alpha, L, T, W, Z )
         end
 
         % Discount learning rate
